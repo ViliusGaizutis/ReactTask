@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 
 // Store
 import { useAppSelector } from 'redux/hooks';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Types
 import type { InputProps, ChangeEventType } from 'types';

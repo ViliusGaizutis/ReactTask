@@ -4,27 +4,27 @@ import { combineReducers, Reducer, CombinedState, AnyAction } from 'redux';
 import type { AuthState } from './auth';
 import type { FeedbackState } from './feedback';
 import type { LocationState } from './location';
-import type { GlobalState } from './global';
+import type { ThemeState } from './theme';
 
 // Reducers
 import authReducer from './auth';
 import feedbackReducer from './feedback';
 import locationReducer from './location';
-import globalReducer from './global';
+import themeReducer from './theme';
 
 const rootReducer: Reducer<
   CombinedState<{
     auth: AuthState;
     feedback: FeedbackState;
     location: LocationState;
-    global: GlobalState;
+    theme: ThemeState;
   }>,
   AnyAction
 > = combineReducers({
   auth: authReducer,
   feedback: feedbackReducer,
   location: locationReducer,
-  global: globalReducer
+  theme: themeReducer
 });
 
 export default rootReducer;

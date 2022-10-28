@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // Store
 import { useAppSelector } from 'redux/hooks';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Components
 import Button from 'components/shared/Button/Button';

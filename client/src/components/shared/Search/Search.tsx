@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 // Store
 import { useAppSelector } from 'redux/hooks';
 import { searchLocations } from 'redux/actionCreators/location';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Custom hooks
 import useDebounce from 'hooks/useDebounce';

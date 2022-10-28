@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 
 // Store
 import { useAppSelector } from 'redux/hooks';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Styles
 import { Spinner } from 'styles/global';

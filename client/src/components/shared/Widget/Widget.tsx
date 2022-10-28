@@ -2,7 +2,7 @@ import React, { FunctionComponent, useMemo, useState } from 'react';
 
 // Store
 import { useAppSelector } from 'redux/hooks';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Types
 import { ForecastType } from 'components/pages/DashboardPage/Dashboard/DashboardForecast/DashboardForecast.utils';

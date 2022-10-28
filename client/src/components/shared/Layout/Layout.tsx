@@ -1,8 +1,8 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 // Store
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Custom hooks
 import { useAppSelector } from 'redux/hooks';
@@ -17,13 +17,14 @@ import GlobalStyle from './Layout.styles';
 
 const Layout: FunctionComponent = () => {
   const theme = useAppSelector(selectTheme);
-  const sidebarOpen = useAppSelector(state => state.global.sidebarOpen);
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
       <GlobalStyle themeType={theme} />
-      <Header />
-      <Sidebar open={sidebarOpen} />
+      <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <Outlet />
       <Footer />
     </>

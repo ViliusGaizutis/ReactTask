@@ -2,7 +2,7 @@ import React, { FunctionComponent, MouseEvent, ButtonHTMLAttributes } from 'reac
 
 // Store
 import { useAppSelector } from 'redux/hooks';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Styles
 import * as S from './ButtonSwitch.styles';

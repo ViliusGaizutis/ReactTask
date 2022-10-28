@@ -11,7 +11,7 @@ import { throttle } from 'utils/helpers';
 import type { AuthState } from './reducers/auth';
 import type { FeedbackState } from './reducers/feedback';
 import type { LocationState } from './reducers/location';
-import type { GlobalState } from './reducers/global';
+import type { ThemeState } from './reducers/theme';
 
 // Reducer
 import rootReducer from './reducers';
@@ -29,7 +29,7 @@ const persistedState = loadState<
     auth: AuthState;
     feedback: FeedbackState;
     location: LocationState;
-    global: GlobalState;
+    theme: ThemeState;
   }
 >();
 
@@ -44,7 +44,8 @@ export const store = createStore(
 store.subscribe(
   throttle(() => {
     saveState({
-      feedback: store.getState().feedback
+      feedback: store.getState().feedback,
+      theme: store.getState().theme
     });
   }, 1000)
 );

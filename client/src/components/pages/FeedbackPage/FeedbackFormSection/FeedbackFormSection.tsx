@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 // Store
 import { useAppSelector } from 'redux/hooks';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 import { addFeedback } from 'redux/actionCreators/feedback';
 
 // Types

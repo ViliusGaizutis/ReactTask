@@ -1,9 +1,12 @@
-import React, { FunctionComponent, useRef, useEffect, useCallback } from 'react';
+import React, {
+  FunctionComponent,
+  Dispatch,
+  SetStateAction,
+  useRef,
+  useEffect,
+  useCallback
+} from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-
-// Store
-import { setSidebarOpen } from 'redux/actionCreators/global';
 
 // Custom hooks
 import useOnClickOutside from 'hooks/useOnClickOutside';
@@ -16,7 +19,8 @@ import { Flex } from 'styles/global';
 import * as S from './Sidebar.styles';
 
 interface SidebarProps {
-  open: boolean;
+  sidebarOpen: boolean;
+  setSidebarOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const navLinks = [
@@ -25,13 +29,12 @@ const navLinks = [
   { to: '/feedback', name: 'Feedback' }
 ];
 
-const Sidebar: FunctionComponent<SidebarProps> = ({ open }) => {
+const Sidebar: FunctionComponent<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
   const sidebarRef = useRef<HTMLElement>(null);
 
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
 
-  const handleSidebarClose = useCallback(() => dispatch(setSidebarOpen(false)), [dispatch]);
+  const handleSidebarClose = useCallback(() => setSidebarOpen(false), [setSidebarOpen]);
 
   useOnClickOutside(sidebarRef, handleSidebarClose);
 
@@ -41,7 +44,7 @@ const Sidebar: FunctionComponent<SidebarProps> = ({ open }) => {
   }, [pathname, handleSidebarClose]);
 
   return (
-    <S.Sidebar role="menu" ref={sidebarRef} open={open}>
+    <S.Sidebar role="menu" ref={sidebarRef} open={sidebarOpen}>
       <Flex directionColumn alignFlexStart>
         <S.SidebarHeader>
           <Flex directionColumn>

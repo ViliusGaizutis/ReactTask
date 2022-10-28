@@ -2,7 +2,7 @@ import React, { FunctionComponent, useState, KeyboardEvent } from 'react';
 
 // Store
 import { useAppSelector } from 'redux/hooks';
-import { selectTheme } from 'redux/reducers/global';
+import { selectTheme } from 'redux/reducers/theme';
 
 // Assets
 import { IconChevron } from 'assets/images/svg';
