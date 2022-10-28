@@ -154,9 +154,7 @@ export const FeedbackTestimonial = styled.div<StylesProps>`
   width: 100%;
   padding-left: 1rem;
   border-left: ${({ themeType }) =>
-    `3px solid ${
-      themeType === 'light' ? theme.palette.grey.light : theme.palette.componentBackgroundDark
-    }`};
+    `3px solid ${themeType === 'light' ? theme.palette.grey.light : theme.palette.grey.darkest}`};
 
   &:not(:last-of-type) {
     margin-bottom: 1.5rem;
@@ -188,7 +186,7 @@ export const FeedbackTestimonialBottom = styled.div<StylesProps>`
   time {
     font-size: 0.875rem;
     color: ${({ themeType }) =>
-      themeType === 'light' ? theme.palette.grey.medium : theme.palette.grey.darkest};
+      themeType === 'light' ? theme.palette.grey.medium : theme.palette.grey.dark};
   }
 `;
 
@@ -200,6 +198,6 @@ export const FeedbackTestimonialsNoData = styled.span<StylesProps>`
   margin-left: 1rem;
   font-size: 0.875rem;
   color: ${({ themeType }) =>
-    themeType === 'light' ? theme.palette.grey.medium : theme.palette.grey.darkest};
+    themeType === 'light' ? theme.palette.grey.medium : theme.palette.grey.dark};
   user-select: none;
 `;

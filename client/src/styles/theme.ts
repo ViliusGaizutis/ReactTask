@@ -11,11 +11,11 @@ const theme = {
       light: '#dcdbdb',
       medium: '#9f9f9f',
       dark: '#706f74',
-      darkest: '#3d3d3d'
+      darkest: '#565656'
     },
     error: '#da6868',
     componentBackgroundLight: '#f2f2f2',
-    componentBackgroundDark: '#28282c'
+    componentBackgroundDark: '#43434c'
   },
   shape: {
     borderRadius: '2rem'
