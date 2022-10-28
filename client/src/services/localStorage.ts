@@ -8,7 +8,7 @@ export function loadState<T = object>(): T | undefined {
 
   try {
     const serializedState = localStorage.getItem(STORE_STATE_LS_LABEL);
-    if (serializedState == null) {
+    if (serializedState === null) {
       return;
     }
     return JSON.parse(serializedState);
