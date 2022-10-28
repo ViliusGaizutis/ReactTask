@@ -9,18 +9,18 @@ import { authorize, authenticate } from 'redux/actionCreators/auth';
 import type { AuthorizationRequest, AuthenticationResponse } from 'types';
 
 // Components
-import Layout from 'hoc/Layout/Layout';
+import Layout from 'components/shared/Layout/Layout';
 
 // Lazy components
-const LocationPage = React.lazy(() => import('components/LocationPage/LocationPage'));
-const AboutPage = React.lazy(() => import('components/AboutPage/AboutPage'));
-const FeedbackPage = React.lazy(() => import('components/FeedbackPage/FeedbackPage'));
-const NotFoundPage = React.lazy(() => import('components/NotFoundPage/NotFoundPage'));
+const DashboardPage = React.lazy(() => import('components/pages/DashboardPage/DashboardPage'));
+const AboutPage = React.lazy(() => import('components/pages/AboutPage/AboutPage'));
+const FeedbackPage = React.lazy(() => import('components/pages/FeedbackPage/FeedbackPage'));
+const NotFoundPage = React.lazy(() => import('components/pages/NotFoundPage/NotFoundPage'));
 
 // Routes
 const routes = [
-  { path: '/', name: 'Home', Component: LocationPage },
-  { path: '/locations/:locationId', name: 'Location', Component: LocationPage },
+  { path: '/', name: 'Home', Component: DashboardPage },
+  { path: '/locations/:locationId', name: 'Location', Component: DashboardPage },
   { path: '/about', name: 'About', Component: AboutPage },
   { path: '/feedback', name: 'Feedback', Component: FeedbackPage },
   { path: '*', name: '404', Component: NotFoundPage }
