@@ -1,34 +1,38 @@
 // Types
 import { Feedback } from 'types';
 
-export enum Testimonial {
+export enum TestimonialCategory {
   ratings = 'ratings',
   suggestions = 'suggestions',
   recommendations = 'recommendations',
   mores = 'mores'
 }
 
-type TestimonialsConfig = Record<Testimonial, Record<'title', string>>;
+type TestimonialsConfig = Record<TestimonialCategory, Record<'title', string>>;
 
 export const testimonialsConfig: TestimonialsConfig = {
-  [Testimonial.ratings]: {
+  [TestimonialCategory.ratings]: {
     title: 'How would you rate our app?'
   },
-  [Testimonial.suggestions]: {
+  [TestimonialCategory.suggestions]: {
     title: 'Anything that can be improved?'
   },
-  [Testimonial.recommendations]: {
+  [TestimonialCategory.recommendations]: {
     title: 'Would you recommend this app to someone else?'
   },
-  [Testimonial.mores]: {
+  [TestimonialCategory.mores]: {
     title: 'Care to share more?'
   }
 };
 
-export type Testimonials = Record<
-  Testimonial,
-  { name: string; rating?: number; message: string; timestamp: Date }[]
->;
+export type Testimonials = Record<TestimonialCategory, Testimonial[]>;
+
+interface Testimonial {
+  name: string;
+  rating?: number;
+  message: string;
+  timestamp: Date;
+}
 
 export const generateTestimonialData = (data: Feedback[]) =>
   data.reduce<Testimonials>(
@@ -36,25 +40,28 @@ export const generateTestimonialData = (data: Feedback[]) =>
       { ratings, suggestions, recommendations, mores },
       { name, rating, reason, suggestion, recommendation, more, timestamp }
     ): Testimonials => ({
-      [Testimonial.ratings]: [...ratings, { name, rating, message: reason, timestamp }],
-      [Testimonial.suggestions]: [...suggestions, { name, message: suggestion, timestamp }],
-      [Testimonial.recommendations]: [
+      [TestimonialCategory.ratings]: [...ratings, { name, rating, message: reason, timestamp }],
+      [TestimonialCategory.suggestions]: [...suggestions, { name, message: suggestion, timestamp }],
+      [TestimonialCategory.recommendations]: [
         ...recommendations,
         { name, message: recommendation, timestamp }
       ],
-      [Testimonial.mores]: [...mores, { name, message: more, timestamp }]
+      [TestimonialCategory.mores]: [...mores, { name, message: more, timestamp }]
     }),
     {
-      [Testimonial.ratings]: [],
-      [Testimonial.suggestions]: [],
-      [Testimonial.recommendations]: [],
-      [Testimonial.mores]: []
+      [TestimonialCategory.ratings]: [],
+      [TestimonialCategory.suggestions]: [],
+      [TestimonialCategory.recommendations]: [],
+      [TestimonialCategory.mores]: []
     }
   );
 
 export type TestimonialsDataArray =
   | {
-      id: Testimonial;
-      list: { name: string; rating?: number; message: string; timestamp: Date }[];
+      id: TestimonialCategory;
+      list: Testimonial[];
     }[]
   | undefined;
+
+export const filterTestimonialsWithEmptyMessages = (list: Testimonial[]) =>
+  list.filter((item: Testimonial) => item.message);

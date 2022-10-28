@@ -164,7 +164,7 @@ export const FeedbackTestimonial = styled.div<StylesProps>`
 export const FeedbackTestimonialTop = styled.div`
   width: 100%;
   margin-bottom: 0.5rem;
-  word-break: break-all;
+  word-break: word;
 
   > div:first-of-type {
     margin-bottom: 0.5rem;

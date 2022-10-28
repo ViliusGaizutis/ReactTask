@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import theme from 'styles/theme';
 import { colorChange, radioWrapperRoot } from 'styles/mixins';
 
 import { StylesProps } from 'types';
 
-const inputRoot = ({ themeType }: StylesProps) => `
+const inputRoot = ({ themeType }: StylesProps) => css`
   width: 100%;
   height: 3rem;
   padding: 0 2rem;
@@ -25,6 +25,11 @@ const inputRoot = ({ themeType }: StylesProps) => `
     changeVal2: theme.palette.white,
     transitionVal: 'all'
   })}
+
+  ::placeholder {
+    color: ${themeType === 'light' ? theme.palette.grey.dark : theme.palette.grey.medium};
+    opacity: 1; /* Firefox */
+  }
 `;
 
 export const Input = styled.input<StylesProps>`

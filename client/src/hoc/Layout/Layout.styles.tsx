@@ -164,7 +164,7 @@ const GlobalStyle = createGlobalStyle<StylesProps>`
   }
 
   ::selection {
-    background-color: ${theme.palette.primary.medium};
+    background-color: ${theme.palette.primary.dark};
     color: ${theme.palette.black};
   }
 `;

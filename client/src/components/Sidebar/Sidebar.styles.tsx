@@ -67,6 +67,11 @@ export const SidebarHeader = styled.div<StylesProps>`
       display: block;
       width: 100%;
 
+      span {
+        font-weight: normal;
+        font-size: 1rem;
+      }
+
       svg {
         top: 25%;
         transform: translate(0%, -0%);

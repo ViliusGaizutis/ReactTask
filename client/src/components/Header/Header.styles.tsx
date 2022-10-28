@@ -25,11 +25,19 @@ export const Header = styled.header<StylesProps>`
 
     ${GeoLocation} {
       p {
-        max-width: 1rem;
+        max-width: 10rem;
       }
 
       svg {
         width: 1rem;
+      }
+    }
+  }
+
+  @media ${breakpoints.xxs} {
+    ${GeoLocation} {
+      p {
+        max-width: 7rem;
       }
     }
   }

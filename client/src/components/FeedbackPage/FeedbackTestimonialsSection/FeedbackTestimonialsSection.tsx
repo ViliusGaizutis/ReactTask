@@ -13,10 +13,11 @@ import StarRating from 'components/StarRating/StarRating';
 import dateFormatter from 'utils/dateFormatter';
 import {
   Testimonials,
-  Testimonial,
+  TestimonialCategory,
   TestimonialsDataArray,
   testimonialsConfig,
-  generateTestimonialData
+  generateTestimonialData,
+  filterTestimonialsWithEmptyMessages
 } from './FeedbackTestimonialsSection.utils';
 
 // Styles
@@ -34,7 +35,7 @@ const FeedbackTestimonialsSection: FunctionComponent = () => {
   const testimonialsDataArray: TestimonialsDataArray =
     testimonials &&
     Object.entries(testimonials).map(entry => ({
-      id: entry[0] as Testimonial,
+      id: entry[0] as TestimonialCategory,
       list: entry[1]
     }));
 
@@ -53,39 +54,43 @@ const FeedbackTestimonialsSection: FunctionComponent = () => {
             <RequestDataWrapper data={data} loading={loading} error={error}>
               {testimonialsDataArray?.map(({ id, list }, index) => (
                 <Accordion key={id} id={id} title={testimonialsConfig[id].title} index={index}>
-                  {list.filter(item => item.message).length > 0 ? (
-                    list.map(({ name, message, rating, timestamp }, i) => {
-                      const { day, year, time } = dateFormatter(timestamp, true);
+                  {filterTestimonialsWithEmptyMessages(list).length > 0 ? (
+                    filterTestimonialsWithEmptyMessages(list).map(
+                      ({ name, message, rating, timestamp }, i) => {
+                        const { day, year, time } = dateFormatter(timestamp, true);
 
-                      return (
-                        <S.FeedbackTestimonial key={`testimonial-${i + 1}`} themeType={theme}>
-                          <Flex directionColumn alignFlexStart>
-                            <S.FeedbackTestimonialTop>
-                              {rating && (
-                                <StarRating
-                                  theme={theme}
-                                  inputConfig={{
-                                    type: 'radio',
-                                    options: STAR_RATING_OPTIONS
-                                  }}
-                                  readOnly
-                                  defaultValue={rating}
-                                />
-                              )}
-                              <p>{message}</p>
-                            </S.FeedbackTestimonialTop>
-                            <S.FeedbackTestimonialBottom themeType={theme}>
-                              <Flex>
-                                <p>{name},</p>&nbsp;
-                                <time dateTime={`${day}, ${year}, ${time}`}>
-                                  {day === 'Today' ? `${day}, ${time}` : `${day}, ${year}, ${time}`}
-                                </time>
-                              </Flex>
-                            </S.FeedbackTestimonialBottom>
-                          </Flex>
-                        </S.FeedbackTestimonial>
-                      );
-                    })
+                        return (
+                          <S.FeedbackTestimonial key={`testimonial-${i + 1}`} themeType={theme}>
+                            <Flex directionColumn alignFlexStart>
+                              <S.FeedbackTestimonialTop>
+                                {rating && (
+                                  <StarRating
+                                    theme={theme}
+                                    inputConfig={{
+                                      type: 'radio',
+                                      options: STAR_RATING_OPTIONS
+                                    }}
+                                    readOnly
+                                    defaultValue={rating}
+                                  />
+                                )}
+                                <p>{message}</p>
+                              </S.FeedbackTestimonialTop>
+                              <S.FeedbackTestimonialBottom themeType={theme}>
+                                <Flex>
+                                  <p>{name},</p>&nbsp;
+                                  <time dateTime={`${day}, ${year}, ${time}`}>
+                                    {day === 'Today'
+                                      ? `${day}, ${time}`
+                                      : `${day}, ${year}, ${time}`}
+                                  </time>
+                                </Flex>
+                              </S.FeedbackTestimonialBottom>
+                            </Flex>
+                          </S.FeedbackTestimonial>
+                        );
+                      }
+                    )
                   ) : (
                     <S.FeedbackTestimonialsNoData themeType={theme}>
                       No data available

@@ -59,6 +59,15 @@ export const ButtonSwitch = styled.button<ButtonSwitchStylesProps>`
 
   svg:first-of-type {
     left: 0.57rem;
+
+    ${({ themeType }) =>
+      colorChange({
+        themeType,
+        changeProp: 'fill',
+        changeVal1: theme.palette.black,
+        changeVal2: theme.palette.white,
+        transitionVal: 'fill'
+      })}
   }
 
   svg:last-of-type {
